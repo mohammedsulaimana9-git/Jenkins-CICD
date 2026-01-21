@@ -14,7 +14,7 @@ pipeline {
     environment {
         // Docker Hub credentials (configure in Jenkins Credentials)
         DOCKER_HUB_CREDENTIALS = credentials('docker-hub-credentials')
-        DOCKER_IMAGE_NAME = 'devshaik010/frontend-app'
+        DOCKER_IMAGE_NAME = 'mohammedsulaimana9/frontend-app'
         DOCKER_IMAGE_TAG = "${BUILD_NUMBER}"
         APP_NAME = 'frontend-app'
     }
@@ -136,9 +136,7 @@ pipeline {
         
         stage('Push to Registry') {
             agent any
-            when {
-                branch 'main'
-            }
+            
             steps {
                 echo '📤 Pushing Docker image to registry...'
                 script {
@@ -152,9 +150,7 @@ pipeline {
         
         stage('Deploy') {
             agent any
-            when {
-                branch 'main'
-            }
+           
             steps {
                 echo '🚀 Deploying application...'
                 script {
